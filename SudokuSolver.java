@@ -29,13 +29,13 @@ public class SudokuSolver {
             if (isSafe(board, row, col, num)) {
                 board[row][col] = num;
                 visualizer.updateBoard(board); // Update the GUI
-                delay(20); // Add a delay to visualize the process
+                delay(2); // Add a delay to visualize the process
                 if (solveSudokuRecursive(board, nextRow, nextCol)) {
                     return true;
                 }
                 board[row][col] = 0;
                 visualizer.updateBoard(board); // Update the GUI
-                delay(20); // Add a delay to visualize the process
+                delay(2); // Add a delay to visualize the process
             }
         }
         return false;
@@ -49,8 +49,8 @@ public class SudokuSolver {
             }
         }
         // Check 3x3 box constraint
-        int boxRowStart = row;
-        int boxColStart = col;
+        int boxRowStart = row - row % 3;
+        int boxColStart = col - col % 3;
         for (int i = boxRowStart; i < boxRowStart + 3; i++) {
             for (int j = boxColStart; j < boxColStart + 3; j++) {
                 if (board[i][j] == num) {
@@ -62,8 +62,8 @@ public class SudokuSolver {
     }
 
     public boolean isSudokuSolved(int[][] board) {
-        for (int row = 0; row <= SIZE; row++) {
-            for (int col = 0; col <= SIZE; col++) {
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
                 if (board[row][col] == 0) {
                     return false; // If any cell is empty, Sudoku is not solved
                 }
