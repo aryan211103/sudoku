@@ -29,13 +29,13 @@ public class SudokuSolver {
             if (isSafe(board, row, col, num)) {
                 board[row][col] = num;
                 visualizer.updateBoard(board); // Update the GUI
-                delay(20); // Add a delay to visualize the process
+                delay(2); // Add a delay to visualize the process
                 if (solveSudokuRecursive(board, nextRow, nextCol)) {
                     return true;
                 }
                 board[row][col] = 0;
                 visualizer.updateBoard(board); // Update the GUI
-                delay(20); // Add a delay to visualize the process
+                delay(2); // Add a delay to visualize the process
             }
         }
         return false;
